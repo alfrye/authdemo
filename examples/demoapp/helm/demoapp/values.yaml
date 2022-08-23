@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: edapt-docker-dev.artifactory.metro.ad.selinc.com/mydemo
+  repository: docker.io/alfrye/demoapp
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "0.0.3"
+  tag: "0.0.1"
 
 imagePullSecrets: []
 nameOverride: ""

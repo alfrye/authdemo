@@ -1,6 +1,3 @@
-// Copyright (c) 2021 - 2022 Schweitzer Engineering Laboratories, Inc.
-// SEL Confidential
-
 package main
 
 import (
@@ -31,7 +28,7 @@ func authenticate(w http.ResponseWriter, r *http.Request) {
 	log.Info().Msg("authenticate handler fired")
 
 	http.SetCookie(w, &http.Cookie{
-		Name:     "BLUEFRAME_SESSION",
+		Name:     "AUTHSESSION",
 		Value:    uuid.New().String(),
 		MaxAge:   86400,
 		HttpOnly: true,
