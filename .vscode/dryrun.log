@@ -1,0 +1,7 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/alanfrye/work/code/authdemo'
+ 
+make: *** No targets.  Stop.
+
+make: Leaving directory '/home/alanfrye/work/code/authdemo'
+ 
