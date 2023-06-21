@@ -1,0 +1,109 @@
+# Copyright (c) 2021 - 2022 Schweitzer Engineering Laboratories, Inc.
+# SEL Confidential
+apiVersion: getambassador.io/v2
+kind: Mapping
+metadata:
+  name: demoapp-mapping
+  namespace: demo
+spec:
+  prefix: /demoapp/status/
+  rewrite: /status
+  cors:
+    origins: https://10.39.83.235
+    methods: POST, GET, OPTIONS
+    headers:
+      - Content-Type
+    credentials: true
+    #max_age: "86400"
+    exposed_headers:
+      - X-myheader
+      
+
+  # add_request_headers:
+  #     type: string
+  #     x-myheader:
+  #       value: test
+  hostname: "*"
+  service: http://demoapp.demo:8585
+  #bypass_auth: true
+---
+apiVersion: getambassador.io/v3alpha1
+kind: Mapping
+metadata:
+  name: demoapp-mapping2
+  namespace: demo
+spec:
+  prefix: /demoapp/validate/
+  rewrite: /
+  cors:
+    origins:
+      - "https://10.39.83.235"
+    methods:
+      - "POST"
+      - "GET"
+      - "OPTIONS"
+    headers:
+      - Content-Type
+      - X-myheader
+    credentials: true
+    #max_age: "86400"
+    exposed_headers:
+      - cookie
+      - X-myheader
+      - X-Customer-Header
+  hostname: "*"
+  add_request_headers:
+    x-myid:
+      value: "test"
+  add_response_headers:
+    X-myheader:
+      value: "1234ABC"
+
+  service: http://demoapp.demo:8585
+
+
+---
+# apiVersion: getambassador.io/v2
+# kind:  Mapping
+# metadata:
+#   name:  demoapp-query
+#   namespace: demo
+# spec:
+#   prefix: /demoapp/status
+#   rewrite: /status
+#   service: http://demoapp.demo:8585
+#   add_request_headers:
+#       type: string
+#       x-myheader:
+#         value: test
+#   cors:
+#     origins: https://10.39.83.235
+#     methods: POST, GET, OPTIONS
+#     headers: Content-Type,Authorization
+#     credentials: true
+#     max_age: "86400"
+#   query_parameters:
+#     state: true
+
+---
+# apiVersion: getambassador.io/v2
+# kind: Mapping
+# metadata:
+#   name: demoapp-auth
+#   namespace: demo
+# spec:
+#   prefix: /bfauth/demoapp/status
+#   rewrite: /status
+#   cors:
+#     origins: https://10.39.83.235
+#     methods: POST, GET, OPTIONS
+#     headers: Content-Type,Authorization
+#     credentials: truelz
+
+#     max_age: "86400"
+#   add_request_headers:
+#       type: string
+#       x-myheader:
+#         value: test
+#   service: http://demoapp.demo:8585
+

@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/bfauth/demoapp/status/", authenticate)
+	http.HandleFunc("/bfauth/authenticate/", authenticate)
 	err := http.ListenAndServe(":3333", nil)
 	if err != nil {
 		fmt.Printf("Error starting server: %v", err)

@@ -1,6 +1,3 @@
-.PHONY: all
-all: k3d/up blueframe/start
-
 
 .PHONY: build/demoapp
 build/demoapp:
